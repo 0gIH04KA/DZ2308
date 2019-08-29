@@ -13,17 +13,75 @@ namespace ConsoleApplication1
     {
         static void Main()
         {
-            Console.WriteLine("Введите символы");
-            string Str = Console.ReadLine();
-            Check(Str);
+            Print();
             Console.ReadKey();
         }
 
-        static bool Check(string Str)
+
+        static void stringСomparison()
+            //Сравнить две строки вводимые пользователем
         {
+            Console.WriteLine("Введите первую строку:");
+            string firstString = Console.ReadLine();
+            Console.WriteLine("Введите вторую строку:");
+            string secondString = Console.ReadLine();
+
+            if (firstString.Length == secondString.Length)
+            {
+                for (int i = 1; i <= firstString.Length; i++)
+                {
+                    if (firstString.Substring(i) == secondString.Substring(i))
+                    {
+                        Console.WriteLine($"{i}-й символ одинаковый");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Строки разные");
+                        break;
+                    }
+
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("Длина срок разная");
+            }
+
+        }
+
+        static void Palindrom()
+            //Проверить вводимую строку на полиндром 
+        {
+            string palindromString = Console.ReadLine();
+            palindromString = palindromString.ToLower();
+            palindromString = palindromString.Replace(" ", "");
+
+            for (int i = 1; i < palindromString.Length; i++)
+            {
+                if (palindromString[i] != palindromString[palindromString.Length - i - 1])
+                {
+                    Console.WriteLine("false");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("true");
+                }
+
+            }
+
+        }
+
+        static void сheckBracket()
+            //Проверка скобок
+        {
+            Console.WriteLine("Введите символы");
+            string myStr = Console.ReadLine();
+
             char openBracket;
             Stack<char> stack = new Stack<char>();
-            foreach (char symbol in Str)
+            foreach (char symbol in myStr)
             {
                 switch (symbol)
                 {
@@ -31,6 +89,7 @@ namespace ConsoleApplication1
                     case '[':
                     case '{':
                     case '<':
+
                         stack.Push(symbol);
                         break;
 
@@ -38,13 +97,13 @@ namespace ConsoleApplication1
                         if (stack.Count == 0)
                         {
                             Console.WriteLine("FALSE");
-                            return false;
+
                         }
                         openBracket = stack.Pop();
                         if (openBracket != '(')
                         {
                             Console.WriteLine("FALSE");
-                            return false;
+
                         }
                         break;
 
@@ -52,13 +111,13 @@ namespace ConsoleApplication1
                         if (stack.Count == 0)
                         {
                             Console.WriteLine("FALSE");
-                            return false;
+                            
                         }
                         openBracket = stack.Pop();
                         if (openBracket != '[')
                         {
                             Console.WriteLine("FALSE");
-                            return false;
+                            
                         }
                         break;
 
@@ -66,13 +125,13 @@ namespace ConsoleApplication1
                         if (stack.Count == 0)
                         {
                             Console.WriteLine("FALSE");
-                            return false;
+
                         }
                         openBracket = stack.Pop();
                         if (openBracket != '{')
                         {
                             Console.WriteLine("FALSE");
-                            return false;
+                            
                         }
                         break;
 
@@ -80,19 +139,20 @@ namespace ConsoleApplication1
                         if (stack.Count == 0)
                         {
                             Console.WriteLine("FALSE");
-                            return false;
+                           
                         }
                         openBracket = stack.Pop();
                         if (openBracket != '<')
                         {
                             Console.WriteLine("FALSE");
-                            return false;
+                           
                         }
                         break;
+
                     default:
                         Console.WriteLine("FALSE");
-                        return false;
-
+                        break;
+                     
                 }
 
             }
@@ -101,15 +161,26 @@ namespace ConsoleApplication1
             {
                 string A = "TRUE";
                 Console.WriteLine($"{A}");
-                return true;
+                
             }
 
-            else
-            {
-                string B = "FALSE";
-                Console.WriteLine($"{B}");
-                return false;
-            }
+        }
+
+        static void Print()
+        {
+            Console.WriteLine(@"Первое задание
+    Введите две строки для сравнения");
+            stringСomparison();
+            Console.WriteLine("");
+
+            Console.WriteLine(@"Второе задание
+    Проверка строки на палиндром");
+            Palindrom();
+            Console.WriteLine("");
+
+            Console.WriteLine(@"Третье задание
+    Введите комбинацию скобок ");
+            сheckBracket();
 
         }
 
